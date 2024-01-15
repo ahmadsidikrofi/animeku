@@ -17,7 +17,7 @@ module.exports = {
     colors: {
       warnaku: {
         primary: '#fff',
-        accent: '#fb3640',
+        accent: '#f89f5b',
         secondary: '#393e46',
         dark: '#222831',
         other: '#14b8a6'

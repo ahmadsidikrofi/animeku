@@ -2,6 +2,7 @@ import HeaderAuth from "@/app/components/HeaderAuth"
 import { authUserGithub } from "@/app/libs/auth-libs"
 import prisma from "@/app/libs/prismaDb"
 import Link from "next/link"
+import Image from "next/image"
 
 const MyComment = async () => {
     const authUser = await authUserGithub()
@@ -12,15 +13,18 @@ const MyComment = async () => {
     return (
         <div className="p-10">
             <HeaderAuth titleHeader="My Comment" />
-            {allMyComment.length <= 1 ?
-                <h3 className="text-warnaku-secondary font-semibold text-2xl text-center">Kamu belum pernah memberi argumen / komentar pada anime apapun nih</h3>
+            {allMyComment.length < 1 ?
+                <div className="flex flex-col justify-center items-center my-24">
+                    <h3 className="text-warnaku-secondary font-semibold text-2xl ">Kamu belum pernah memberi argumen / komentar pada anime apapun nih</h3>
+                    <Image src="/emptyComment.jpg" width={500} height={500} alt="..."/>
+                </div>
                 :
                 null
             }
             {allMyComment.map((myComment) => (
                 <>
-                <Link href={`/anime/${myComment.anime_mal_id}`}>
-                    <div key={myComment.id} className="my-8 p-3 bg-warnaku-secondary text-warnaku-primary rounded-[20px] 
+                <Link href={`/anime/${myComment.anime_mal_id}`} >
+                    <div key={myComment.id} className="my-12 p-3 bg-warnaku-secondary text-warnaku-primary rounded-[20px] 
                         hover:shadow-xl 
                         hover:scale-105 
                         transition-all ease-linear
